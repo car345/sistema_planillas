@@ -56,7 +56,7 @@
         <input type="text" data-id-meses="<?php echo $data["id_meses"]; ?>" class="form-control" id ="cod_modal<?php echo $data["id_meses"]; ?>">
       </div>
       <div class="btn-group col-sm-7">
-        <input type="text" class="form-control" id='NOMBREMODAL<?php echo $data["id_meses"]; ?>' disabled>
+        <input type="text" class="form-control" id='NOMBREMODAL<?php echo $data["id_meses"]; ?>'>
         <p class="mx-4 my-2"> Hasta</p>
       </div>
     </div>
@@ -647,11 +647,7 @@ function removeErrorMessage(input) {
     if (validateForm(mes))
     {
     window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
-   
-    setTimeout(function() {
-                    location.reload();
-                    }, 1000)
-  }
+    }
 
 
   }

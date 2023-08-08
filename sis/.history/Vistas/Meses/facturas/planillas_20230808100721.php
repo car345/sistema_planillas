@@ -22,28 +22,11 @@
 <?php  	
 if(isset($_GET['param1']))
 {
-	$codigoPorNombre = [
-		"PENSIONISTAS" => "1",
-		"VIUDEZ" => "21",
-		"ORFANDAD" => "3"
-	  ];
-	  // Parámetros para seleccionar nombres específicos
-$nombresSeleccionados = [$_GET['param1'], $_GET['param2'],];
-
-// Nuevo arreglo para almacenar los códigos correspondientes
-$armodal = [];
-
-// Iterar sobre los nombres seleccionados y agregar los códigos al nuevo arreglo
-foreach ($nombresSeleccionados as $nombre) {
-  if (isset($codigoPorNombre[$nombre])) {
-    $armodal[] = $codigoPorNombre[$nombre];
-  }
-}
 
 }else{
-	$armodal=array(1,21,3);
+	
 }
-
+$armodal=array(1,21,3);
 $side=0;
 foreach($armodal as $modal)
 {

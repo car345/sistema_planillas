@@ -36,7 +36,7 @@ $armodal = [];
 // Iterar sobre los nombres seleccionados y agregar los códigos al nuevo arreglo
 foreach ($nombresSeleccionados as $nombre) {
   if (isset($codigoPorNombre[$nombre])) {
-    $armodal[] = $codigoPorNombre[$nombre];
+    $codigosSeleccionados[] = $codigoPorNombre[$nombre];
   }
 }
 

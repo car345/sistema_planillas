@@ -56,7 +56,7 @@
         <input type="text" data-id-meses="<?php echo $data["id_meses"]; ?>" class="form-control" id ="cod_modal<?php echo $data["id_meses"]; ?>">
       </div>
       <div class="btn-group col-sm-7">
-        <input type="text" class="form-control" id='NOMBREMODAL<?php echo $data["id_meses"]; ?>' disabled>
+        <input type="text" class="form-control" id='NOMBREMODAL<?php echo $data["id_meses"]; ?>'>
         <p class="mx-4 my-2"> Hasta</p>
       </div>
     </div>
@@ -68,7 +68,7 @@
       <input type="text" class="form-control" data-id-meses="<?php echo $data["id_meses"]; ?>" id ="cod_modal_final<?php echo $data["id_meses"]; ?>">
     </div>
     <div class="btn-group col-md-6">
-      <input type="text" class="form-control" id='NOMBREMODAL_FINAL<?php echo $data["id_meses"]; ?>' disabled>
+      <input type="text" class="form-control" id='NOMBREMODAL_FINAL<?php echo $data["id_meses"]; ?>'>
       <p class="mx-4"> </p>
     </div>
   </div>
@@ -97,7 +97,7 @@
   </span>
   </div>
   <div class="py-2">
-<button class="btn btn-block btn-outline text-white w-100 fw-bold" onclick="planilla(<?php echo  $data["id_meses"];?>,$('#NOMBREMODAL<?php echo  $data["id_meses"];?>').val(),$('#NOMBREMODAL_FINAL<?php echo  $data["id_meses"];?>' ).val())" style="background-color: #1976D2; " >REPRESENTAR LA PLANILLA</button>
+<button class="btn btn-block btn-outline text-white w-100 fw-bold" onclick="planilla(<?php echo  $data["id_meses"];?>)" style="background-color: #1976D2; " >REPRESENTAR LA PLANILLA</button>
 </div>
   </div>
 <!-- descuento ley -->
@@ -606,6 +606,12 @@ function removeErrorMessage(input) {
     errorMessage.textContent = ""; // Limpiar el contenido del mensaje de error
   }
 }
+
+
+
+
+
+
       function habilitarInput(event) {
      
      
@@ -624,18 +630,19 @@ function removeErrorMessage(input) {
       }
 
       }
-      
-      function planilla(mes,param1,param2){
+ 
+
+      function planilla(mes,modalidad,tipoplanilla, param1,param2){
     // Variables define el alto de la ventana para mostrar
     var modalidad =$('#modalplan'+mes).val(); 
     var tipoplanilla=$('#tipp'+mes).val(); 
     var ancho = 1000;
     var alto = 800;
-        
     // Calcular posocion x,y para centrar la ventana
 
     var x = parseInt((window.screen.width/2) - (ancho / 2));
     var y = parseInt((window.screen.height/2) - (alto / 2));
+    console.log(modalidad);
 
     $url = 'facturas/generaplanilla.php?m='+mes+ '';
     $url += modalidad ? '&modalidad=' + modalidad : '';
@@ -647,13 +654,7 @@ function removeErrorMessage(input) {
     if (validateForm(mes))
     {
     window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
-   
-    setTimeout(function() {
-                    location.reload();
-                    }, 1000)
-  }
-
-
+    }
   }
 
 

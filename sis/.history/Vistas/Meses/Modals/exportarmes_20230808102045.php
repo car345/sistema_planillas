@@ -648,9 +648,6 @@ function removeErrorMessage(input) {
     {
     window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
    
-    setTimeout(function() {
-                    location.reload();
-                    }, 1000)
   }
 
 
