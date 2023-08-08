@@ -397,17 +397,11 @@
       </div>
 
       <script>
-        var openModalLinks = document.getElementsByClassName('open-modal');
 
-        for (var i = 0; i < openModalLinks.length; i++) {
-            openModalLinks[i].addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la acción por defecto del enlace o botón
-             
-            var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
-
-                });
-        }
+let idMesActual = null; 
+        function obtenerIdMesDeFila(fila) {
+        return fila.getAttribute("data-id-mes");
+      }
 
       function habilitarInputplanil(evento) {
       var tipp = document.getElementById('tipp' + evento);
@@ -512,7 +506,22 @@
 
 }
 
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("show.bs.modal", function(event) {
+    const botonPlanilla = document.querySelector(`[data-bs-target="#${modal.id}"]`);
+    const fila = botonPlanilla.closest("tr");
+    const mesIdEnFila = fila.getAttribute("data-mes-id");
+    
+    modal.setAttribute("data-mes-id", mesIdEnFila);
+  });
 
+  modal.addEventListener("shown.bs.modal", function(event) {
+    const mesIdEnModal = modal.getAttribute("data-mes-id");
+    console.log("ID del mes en el modal:", mesIdEnModal);
+    
+    // Puedes realizar acciones con el ID del mes aquí
+  });
+});
 
 function insertErrorMessage(input, message) {
   const errorMessage = input.parentNode.querySelector(".error-message");

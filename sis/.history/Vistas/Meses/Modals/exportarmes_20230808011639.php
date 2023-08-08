@@ -404,7 +404,7 @@
                 event.preventDefault(); // Evitar la acción por defecto del enlace o botón
              
             var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
+            
 
                 });
         }

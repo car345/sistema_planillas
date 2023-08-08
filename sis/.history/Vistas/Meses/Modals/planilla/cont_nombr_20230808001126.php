@@ -11,7 +11,7 @@
                   <div class="btn-group col-sm-2  ">
                 
                     <br>
-                <input type="text" class="form-control"     id='inputmodalidad<?php echo  $data["id_meses"];?>'>
+                <input type="text" class="form-control"  data-id-meses="<?php echo  $data["id_meses"];? "   id='inputmodalidad<?php echo  $data["id_meses"];?>'>
     
             </div>
             <div class="btn-group  col-sm-7">

@@ -406,6 +406,12 @@
             var ids = this.getAttribute('data-id');
             console.log('ID obtenido:', ids);
 
+            // Aquí puedes agregar la lógica que necesitas hacer con el primer valor
+            primeraEjecucion = true; // Cambiamos el valor de la variable de control
+
+            // Detenemos el bucle
+            exit();
+        
                 });
         }
 

@@ -406,6 +406,10 @@
             var ids = this.getAttribute('data-id');
             console.log('ID obtenido:', ids);
 
+
+            // Detenemos el bucle
+            exit();
+        
                 });
         }
 

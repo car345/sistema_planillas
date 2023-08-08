@@ -47,33 +47,37 @@
     <option value="AREAS">ÁREAS</option>
   </select>
   </span>
-  <div id="modalidades<?php echo $data["id_meses"]; ?>" style="display:none;">
+  <div id="modalidades<?php echo  $data["id_meses"];?>" style="display:none;">
   <span>
-    <div class="row row-2 fila">
-      <label for="">Modalidad</label>
-      <div class="btn-group col-sm-1">
-        <br>
-        <input type="text" data-id-meses="<?php echo $data["id_meses"]; ?>" class="form-control">
-      </div>
-      <div class="btn-group col-sm-7">
-        <input type="text" class="form-control">
-        <p class="mx-4 my-2"> Hasta</p>
-      </div>
-    </div>
+  <div class="row row-2">
+                    <label for="">Modalidad</label>
+                  <div class="btn-group col-sm-1  ">
+                
+                    <br>
+                <input type="text" class="form-control"   >
+    
+            </div>
+            <div class="btn-group  col-sm-7">
+   
+            <input type="text" class="form-control " disabled > <p class="mx-4 my-2"> Hasta</p>
+
+        </div>
+            </div>
   </span>
   <div class="row row-2">
-    <label for="">Modalidad</label>
-    <div class="btn-group col-sm-1">
-      <br>
-      <input type="text" class="form-control" data-id-meses="<?php echo $data["id_meses"]; ?>" id="modalidad_input<?php echo $data["id_meses"]; ?>">
-    </div>
-    <div class="btn-group col-md-6">
-      <input type="text" class="form-control">
-      <p class="mx-4"> </p>
-    </div>
+                    <label for="">Modalidad</label>
+                  <div class="btn-group col-sm-1  ">
+                
+                    <br>
+                <input type="text" class="form-control " >
+    
+            </div>
+            <div class="btn-group  col-md-6">
+   
+            <input type="text" class="form-control " disabled > <p class="mx-4"> </p>
+        </div>
+            </div>
   </div>
-</div>
-
   <div id="arease<?php echo  $data["id_meses"];?>" style="display:none;">
   <span>
     <div class="row row-2">
@@ -82,7 +86,7 @@
               <br><input type="text" class="form-control " >
           </div>
           <div class="btn-group  col-sm-7">
-              <input type="text" class="form-control "  > <p class="mx-4 my-2"> Hasta</p>
+              <input type="text" class="form-control " disabled > <p class="mx-4 my-2"> Hasta</p>
           </div>
     </div>
     <div class="row row-2">
@@ -91,7 +95,7 @@
           <br><input type="text" class="form-control " >
         </div>
         <div class="btn-group  col-md-6">
-          <input type="text" class="form-control "  > <p class="mx-4"> </p>
+          <input type="text" class="form-control " disabled > <p class="mx-4"> </p>
         </div>
     </div>
   </span>
@@ -397,17 +401,6 @@
       </div>
 
       <script>
-        var openModalLinks = document.getElementsByClassName('open-modal');
-
-        for (var i = 0; i < openModalLinks.length; i++) {
-            openModalLinks[i].addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la acción por defecto del enlace o botón
-             
-            var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
-
-                });
-        }
 
       function habilitarInputplanil(evento) {
       var tipp = document.getElementById('tipp' + evento);
@@ -423,119 +416,23 @@
       
       }
       }
+
       function validateForm(id_meses) {
-        
       const modalplan = document.getElementById("modalplan" + id_meses);
       const tipp = document.getElementById("tipp" + id_meses);
       const filtrar = document.getElementById("filtrar" + id_meses);
-      let valid = true;
 
-     if(modalplan.value === "" || tipp.value === ""){
-      swal({
-                    title: "Falta seleccionar los campos ",
-                   
-                    icon: "warning",
+      if (modalplan.value === "" || tipp.value === "" || filtrar.value === "") {
+        
+        swal({
+                    title: "Se registro correctamente  ",
+                    text: "Datos correctos!",
+                    icon: "success",
                     timer :3000 });
-      return false;
-     }
-     if(tipp.value ==="PLANILLA" && filtrar.value === "" )
-     {
-      swal({
-                    title: "Falta seleccionar el campo filtrar ",
-                   
-                    icon: "warning",
-                    timer :3000 });
-      return false;
-     }
-
-
-  if (tipp.value === "PLANILLA" || tipp.value === "PLANILLA_MENSUAL") {
-    const modalidades = document.getElementById("modalidades" + id_meses);
-    const areas = document.getElementById("arease" + id_meses);
-
-    const modalidadInputs = modalidades.querySelectorAll("input");
-    const areaInputs = areas.querySelectorAll("input");
-
-    if(tipp.value=="PLANILLA")
-    {
-      if(filtrar.value === "MODALIDADES" && modalidadInputs.length > 0)
-      {
-
-    
-      modalidadInputs.forEach(input => {
-      if (input.value.trim() === "") {
-        insertErrorMessage(input, "Campo requerido");
-        valid = false;
-      } else {
-        removeErrorMessage(input);
+        return false;
       }
-
-    });
-  }
-
-  if(filtrar.value === "AREAS" && modalidadInputs.length > 0)
-      {
-    areaInputs.forEach(input => {
-      if (input.value.trim() === "") {
-        insertErrorMessage(input, "Campo requerido");
-        valid = false;
-      } else {
-        removeErrorMessage(input);
-      }
-    });
- }
-    if (!valid) {
-      
-      return false;
-    }else{
       return true;
     }
-    
-    }
-
-    if(tipp.value === "PLANILLA_MENSUAL")
-    {
-      if (modalplan.value === "" || tipp.value === "" ){
-        swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Por favor, seleccione todas las opciones!',
-    });
-    return false;
-    }
-    }
-  
-  
-  }
-
-  return true;
-
-}
-
-
-
-function insertErrorMessage(input, message) {
-  const errorMessage = input.parentNode.querySelector(".error-message");
-
-  if (!errorMessage) {
-    const newErrorMessage = document.createElement("div");
-    newErrorMessage.className = "error-message";
-    input.parentNode.appendChild(newErrorMessage);
-  }
-
-  const currentErrorMessage = input.parentNode.querySelector(".error-message");
-  currentErrorMessage.textContent = message;
-}
-
-function removeErrorMessage(input) {
-  const errorMessage = input.parentNode.querySelector(".error-message");
-  if (errorMessage) {
-    errorMessage.textContent = ""; // Limpiar el contenido del mensaje de error
-  }
-}
-
-
-
 
 
 
@@ -557,32 +454,6 @@ function removeErrorMessage(input) {
       }
 
       }
- 
-
-      function planilla(mes,modalidad,tipoplanilla, param1,param2){
-    // Variables define el alto de la ventana para mostrar
-    var modalidad =$('#modalplan'+mes).val(); 
-    var tipoplanilla=$('#tipp'+mes).val(); 
-    var ancho = 1000;
-    var alto = 800;
-    // Calcular posocion x,y para centrar la ventana
-
-    var x = parseInt((window.screen.width/2) - (ancho / 2));
-    var y = parseInt((window.screen.height/2) - (alto / 2));
-    console.log(modalidad);
-
-    $url = 'facturas/generaplanilla.php?m='+mes+ '';
-    $url += modalidad ? '&modalidad=' + modalidad : '';
-    $url += tipoplanilla ? '&tipoplanilla=' + tipoplanilla : '';
-    $url += param1 ? '&param1=' + param1 : '';
-    $url += param2 ? '&param2=' + param2 : '';
-
-    // Posciones
-    if (validateForm(mes))
-    {
-    window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
-    }
-  }
 
 
         function boletapago(id,mes){

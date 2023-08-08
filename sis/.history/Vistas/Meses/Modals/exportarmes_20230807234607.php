@@ -47,33 +47,37 @@
     <option value="AREAS">ÁREAS</option>
   </select>
   </span>
-  <div id="modalidades<?php echo $data["id_meses"]; ?>" style="display:none;">
+  <div id="modalidades<?php echo  $data["id_meses"];?>" style="display:none;">
   <span>
-    <div class="row row-2 fila">
-      <label for="">Modalidad</label>
-      <div class="btn-group col-sm-1">
-        <br>
-        <input type="text" data-id-meses="<?php echo $data["id_meses"]; ?>" class="form-control">
-      </div>
-      <div class="btn-group col-sm-7">
-        <input type="text" class="form-control">
-        <p class="mx-4 my-2"> Hasta</p>
-      </div>
-    </div>
+  <div class="row row-2">
+                    <label for="">Modalidad</label>
+                  <div class="btn-group col-sm-1  ">
+                
+                    <br>
+                <input type="text" class="form-control"   >
+    
+            </div>
+            <div class="btn-group  col-sm-7">
+   
+            <input type="text" class="form-control " disabled > <p class="mx-4 my-2"> Hasta</p>
+
+        </div>
+            </div>
   </span>
   <div class="row row-2">
-    <label for="">Modalidad</label>
-    <div class="btn-group col-sm-1">
-      <br>
-      <input type="text" class="form-control" data-id-meses="<?php echo $data["id_meses"]; ?>" id="modalidad_input<?php echo $data["id_meses"]; ?>">
-    </div>
-    <div class="btn-group col-md-6">
-      <input type="text" class="form-control">
-      <p class="mx-4"> </p>
-    </div>
+                    <label for="">Modalidad</label>
+                  <div class="btn-group col-sm-1  ">
+                
+                    <br>
+                <input type="text" class="form-control " >
+    
+            </div>
+            <div class="btn-group  col-md-6">
+   
+            <input type="text" class="form-control " disabled > <p class="mx-4"> </p>
+        </div>
+            </div>
   </div>
-</div>
-
   <div id="arease<?php echo  $data["id_meses"];?>" style="display:none;">
   <span>
     <div class="row row-2">
@@ -82,7 +86,7 @@
               <br><input type="text" class="form-control " >
           </div>
           <div class="btn-group  col-sm-7">
-              <input type="text" class="form-control "  > <p class="mx-4 my-2"> Hasta</p>
+              <input type="text" class="form-control " disabled > <p class="mx-4 my-2"> Hasta</p>
           </div>
     </div>
     <div class="row row-2">
@@ -91,7 +95,7 @@
           <br><input type="text" class="form-control " >
         </div>
         <div class="btn-group  col-md-6">
-          <input type="text" class="form-control "  > <p class="mx-4"> </p>
+          <input type="text" class="form-control " disabled > <p class="mx-4"> </p>
         </div>
     </div>
   </span>
@@ -397,17 +401,6 @@
       </div>
 
       <script>
-        var openModalLinks = document.getElementsByClassName('open-modal');
-
-        for (var i = 0; i < openModalLinks.length; i++) {
-            openModalLinks[i].addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la acción por defecto del enlace o botón
-             
-            var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
-
-                });
-        }
 
       function habilitarInputplanil(evento) {
       var tipp = document.getElementById('tipp' + evento);
@@ -424,7 +417,6 @@
       }
       }
       function validateForm(id_meses) {
-        
       const modalplan = document.getElementById("modalplan" + id_meses);
       const tipp = document.getElementById("tipp" + id_meses);
       const filtrar = document.getElementById("filtrar" + id_meses);
@@ -438,7 +430,7 @@
                     timer :3000 });
       return false;
      }
-     if(tipp.value ==="PLANILLA" && filtrar.value === "" )
+     if(tipp.value ==="PLANILLA" || filtrar.value === "" )
      {
       swal({
                     title: "Falta seleccionar el campo filtrar ",
@@ -447,8 +439,7 @@
                     timer :3000 });
       return false;
      }
-
-
+     
   if (tipp.value === "PLANILLA" || tipp.value === "PLANILLA_MENSUAL") {
     const modalidades = document.getElementById("modalidades" + id_meses);
     const areas = document.getElementById("arease" + id_meses);
@@ -458,10 +449,6 @@
 
     if(tipp.value=="PLANILLA")
     {
-      if(filtrar.value === "MODALIDADES" && modalidadInputs.length > 0)
-      {
-
-    
       modalidadInputs.forEach(input => {
       if (input.value.trim() === "") {
         insertErrorMessage(input, "Campo requerido");
@@ -469,12 +456,8 @@
       } else {
         removeErrorMessage(input);
       }
-
     });
-  }
 
-  if(filtrar.value === "AREAS" && modalidadInputs.length > 0)
-      {
     areaInputs.forEach(input => {
       if (input.value.trim() === "") {
         insertErrorMessage(input, "Campo requerido");
@@ -483,16 +466,11 @@
         removeErrorMessage(input);
       }
     });
- }
-    if (!valid) {
-      
-      return false;
-    }else{
-      return true;
-    }
-    
-    }
 
+    if (!valid) {
+      return false;
+    }
+    }
     if(tipp.value === "PLANILLA_MENSUAL")
     {
       if (modalplan.value === "" || tipp.value === "" ){
@@ -503,6 +481,9 @@
     });
     return false;
     }
+     
+      }else if(!modalplan.value === "" || !tipp.value === ""){
+        return true;
     }
   
   
@@ -511,8 +492,6 @@
   return true;
 
 }
-
-
 
 function insertErrorMessage(input, message) {
   const errorMessage = input.parentNode.querySelector(".error-message");
@@ -535,9 +514,7 @@ function removeErrorMessage(input) {
 }
 
 
-
-
-
+    
 
       function habilitarInput(event) {
      
@@ -557,7 +534,6 @@ function removeErrorMessage(input) {
       }
 
       }
- 
 
       function planilla(mes,modalidad,tipoplanilla, param1,param2){
     // Variables define el alto de la ventana para mostrar

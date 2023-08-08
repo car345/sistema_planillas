@@ -402,10 +402,16 @@
         for (var i = 0; i < openModalLinks.length; i++) {
             openModalLinks[i].addEventListener('click', function(event) {
                 event.preventDefault(); // Evitar la acción por defecto del enlace o botón
-             
+                if (!primeraEjecucion) {
             var ids = this.getAttribute('data-id');
             console.log('ID obtenido:', ids);
 
+            // Aquí puedes agregar la lógica que necesitas hacer con el primer valor
+            primeraEjecucion = true; // Cambiamos el valor de la variable de control
+
+            // Detenemos el bucle
+            exit()
+        }
                 });
         }
 

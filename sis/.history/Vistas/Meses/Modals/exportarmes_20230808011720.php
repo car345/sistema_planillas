@@ -398,13 +398,13 @@
 
       <script>
         var openModalLinks = document.getElementsByClassName('open-modal');
-
+        let val= null;
         for (var i = 0; i < openModalLinks.length; i++) {
             openModalLinks[i].addEventListener('click', function(event) {
                 event.preventDefault(); // Evitar la acción por defecto del enlace o botón
              
             var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
+            ids=null;
 
                 });
         }

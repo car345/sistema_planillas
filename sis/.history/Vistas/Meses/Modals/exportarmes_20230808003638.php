@@ -73,7 +73,6 @@
     </div>
   </div>
 </div>
-
   <div id="arease<?php echo  $data["id_meses"];?>" style="display:none;">
   <span>
     <div class="row row-2">
@@ -397,17 +396,6 @@
       </div>
 
       <script>
-        var openModalLinks = document.getElementsByClassName('open-modal');
-
-        for (var i = 0; i < openModalLinks.length; i++) {
-            openModalLinks[i].addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la acción por defecto del enlace o botón
-             
-            var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
-
-                });
-        }
 
       function habilitarInputplanil(evento) {
       var tipp = document.getElementById('tipp' + evento);
@@ -424,7 +412,6 @@
       }
       }
       function validateForm(id_meses) {
-        
       const modalplan = document.getElementById("modalplan" + id_meses);
       const tipp = document.getElementById("tipp" + id_meses);
       const filtrar = document.getElementById("filtrar" + id_meses);
@@ -485,7 +472,6 @@
     });
  }
     if (!valid) {
-      
       return false;
     }else{
       return true;
@@ -512,8 +498,6 @@
 
 }
 
-
-
 function insertErrorMessage(input, message) {
   const errorMessage = input.parentNode.querySelector(".error-message");
 
@@ -534,10 +518,13 @@ function removeErrorMessage(input) {
   }
 }
 
-
-
-
-
+  const inputsElemento = document.querySelector("[data-id-meses]");
+    if (inputsElemento) {
+      const idMeses = inputsElemento.getAttribute("data-id-meses");
+      console.log(idMeses);
+    } else {
+      console.error("El elemento no se encontró en el DOM.");
+    }
 
       function habilitarInput(event) {
      
@@ -557,7 +544,16 @@ function removeErrorMessage(input) {
       }
 
       }
- 
+
+      const primeraFila = document.querySelector(".fila:first-child");
+const inputConData = primeraFila.querySelector("input[data-id-meses]");
+
+if (inputConData) {
+  const idMeses = inputConData.getAttribute("data-id-meses");
+  console.log("ID Meses de la primera fila:", idMeses);
+} else {
+  console.error("No se encontró un input con data-id-meses en la primera fila.");
+}
 
       function planilla(mes,modalidad,tipoplanilla, param1,param2){
     // Variables define el alto de la ventana para mostrar

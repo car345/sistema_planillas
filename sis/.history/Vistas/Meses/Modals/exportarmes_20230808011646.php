@@ -404,11 +404,11 @@
                 event.preventDefault(); // Evitar la acción por defecto del enlace o botón
              
             var ids = this.getAttribute('data-id');
-            console.log('ID obtenido:', ids);
+            
 
                 });
         }
-
+console.log(ids);
       function habilitarInputplanil(evento) {
       var tipp = document.getElementById('tipp' + evento);
 

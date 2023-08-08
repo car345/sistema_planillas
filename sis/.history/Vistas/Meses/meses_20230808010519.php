@@ -185,7 +185,7 @@ if($data['id_meses']=='9999')
                     <td class="bg-light text-center" style=" font-family: 'Oswald', sans-serif !important;  text-transform:uppercase;"><?php echo $data['DESC'];?></td>
                     <td class="bg-light text-center" style=" font-family: 'Oswald', sans-serif !important; "><?php echo $data['FEDU'];?></td>           
                     <td class="bg-light text-center" style=" font-family: 'Oswald', sans-serif !important; ">
-                    <a class="open-modal btn btn-success text-white text-center"  <?php if($data['ESTADO']==1) { echo 'data-bs-toggle="modal"data-id='.$data["id_meses"].' data-bs-target=#exportarmes'.$data["id_meses"];}  ?> ><i class="bi bi-file-zip"></i> </i></a>                    
+                    <a class="open-modal btn btn-success text-white text-center" id="boton-planilla"  <?php if($data['ESTADO']==1) { echo 'data-bs-toggle="modal"data-id='.$data["id_meses"].' data-bs-target=#exportarmes'.$data["id_meses"];}  ?> ><i class="bi bi-file-zip"></i> </i></a>                    
                    </td>
                     <td class="bg-light text-center">
                                    

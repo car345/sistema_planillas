@@ -72,8 +72,6 @@ ul.options-list li:first-child {
 .error-message {
   color: red;
   font-size: 12px;
-  display: flex; /* Usar flexbox para alinear elementos en línea */
-  align-items: center; /* Centrar verticalmente los elementos */
   margin-top: 4px;
 }
 </style>
