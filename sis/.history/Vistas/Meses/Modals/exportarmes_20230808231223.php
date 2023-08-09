@@ -100,36 +100,25 @@
 <button class="btn btn-block btn-outline text-white w-100 fw-bold" onclick="planilla(<?php echo  $data["id_meses"];?>,$('#NOMBREMODAL<?php echo  $data["id_meses"];?>').val(),$('#NOMBREMODAL_FINAL<?php echo  $data["id_meses"];?>' ).val())" style="background-color: #1976D2; " >REPRESENTAR LA PLANILLA</button>
 </div>
   </div>
-
 <!-- descuento ley -->
   <div class="tab-content" id="descuentoley<?php echo  $data["id_meses"];?>" style="display: none;">
   <span>
   <hr>
    <span class="fw-bold">MODALIDAD DE PLANILLA</span>
-    <select name="modalplandesc<?php echo  $data["id_meses"];?>" id="modalplandesc<?php echo  $data["id_meses"];?>" class="form-select">
+    <select name="modalplandesc<?php echo  $data["id_meses"];?>" id="modalplandesc  <?php echo  $data["id_meses"];?>" class="form-select">
       <option value="">Seleccione una opcion</option>
       <option value="PENSIONISTAS">PENSIONISTAS</option>
     </select> 
   </span>
   <span>
-  <span class="fw-bold">TIPO DE DESCUENTO LEY</span >
-    <select  data-id="<?php echo  $data["id_meses"];?>"   name="tippdesc<?php echo  $data["id_meses"];?>" id="tippdesc<?php echo  $data["id_meses"];?>" onchange="habilitarInputdesc(<?php echo  $data["id_meses"];?>)" class="form-select">
+  <span class="fw-bold">TIPO DE DESCUENTO LEY</span>
+    <select  data-id="<?php echo  $data["id_meses"];?>"   name="tippdesc<?php echo  $data["id_meses"];?>" id="tippdesc<?php echo  $data["id_meses"];?>" onchange="habilitarInputplanil(<?php echo  $data["id_meses"];?>)" class="form-select">
       <option value="">Seleccione una opcion</option>
-      <option value="DESC_LEY">DESC. LEY INDIVIDUAL</option>
+      <option value="DESCLEY">DESC. LEY INDIVIDUAL</option>
       <option value="DESCLEY_MENUSAL"> DESC. LEY MENSUAL</option>
     </select>
   </span>
-  </span>
-  <span id="filtraropcionesdesc<?php echo  $data["id_meses"];?>" style="display:none;">
-  <span class="fw-bold">FILTRAR</span>
-    <select data-id="<?php echo  $data["id_meses"];?>"  name="" id="filtrardesc<?php echo  $data["id_meses"];?>" onchange="habilitarInput_desc(<?php echo  $data["id_meses"];?>)" class="form-select">
-    <option value="">Seleccione una opcion</option>
-    <option value="AFPS">SISTEMA PENSIONARIOS</option>
-    
-  </select>
-  </span>
-
-  <span  id='afps<?php echo  $data["id_meses"];?>' style="display:none;">
+  <span>
   <div class="row row-2">
    <label for="" class="fw-bold">SISTEMA PENSIONARIO</label>
      <div class="btn-group col-sm-1  "><br>
@@ -143,9 +132,7 @@
               <input type="text" class="form-control " disabled ><p class="mx-4"></p></div>
             </div>
   </span>
-  <span clas="py-3">
     <button type="button" onclick="desc_ley(<?php echo $data["id_meses"]; ?>)" class="btn btn-success w-100 fw-bold" style="background-color: #1976D2; ">REPRESENTAR DESCUENTO LEY</button>
-    </span>
   </div>
 
   <!-- resumen modalidad -->
@@ -509,22 +496,6 @@
       
       }
       }
-
-      function habilitarInputdesc(evento) {
-      var tipp = document.getElementById('tippdesc' + evento);
-
-      var inputHabilitadotipp = document.getElementById('filtraropcionesdesc' + evento); 
-
-      if (tipp.value === 'DESC_LEY') {
-        inputHabilitadotipp.style.display = 'block';
-
-      // Habilitar el input
-      }else {
-        inputHabilitadotipp.style.display = 'none';
-      
-      }
-      }
-
       function validateForm(id_meses) {
         
       const modalplan = document.getElementById("modalplan" + id_meses);
@@ -615,94 +586,6 @@
 }
 
 
-function validatedescform(id_meses)
-{
-      const modalplan = document.getElementById("modalplandesc" + id_meses);
-      
-      const tipp = document.getElementById("tippdesc" + id_meses);
-      const filtrar = document.getElementById("filtrardesc" + id_meses);
-      let valid = true;
-
-     if(modalplan.value === "PENSIONISTAS" || tipp.value === ""){
-      swal({
-                    title: "Falta seleccionar los campos ",
-                   
-                    icon: "warning",
-                    timer :3000 });
-      return false;
-     }
-     if(tipp.value ==="PLANILLA" && filtrar.value === "" )
-     {
-      swal({
-                    title: "Falta seleccionar el campo filtrar ",
-                   
-                    icon: "warning",
-                    timer :3000 });
-      return false;
-     }
-
-
-  if (tipp.value === "PLANILLA" || tipp.value === "PLANILLA_MENSUAL") {
-    const modalidades = document.getElementById("modalidades" + id_meses);
-    const areas = document.getElementById("arease" + id_meses);
-
-    const modalidadInputs = modalidades.querySelectorAll("input");
-    const areaInputs = areas.querySelectorAll("input");
-
-    if(tipp.value=="PLANILLA")
-    {
-      if(filtrar.value === "MODALIDADES" && modalidadInputs.length > 0)
-      {
-
-    
-      modalidadInputs.forEach(input => {
-      if (input.value.trim() === "") {
-        insertErrorMessage(input, "Campo requerido");
-        valid = false;
-      } else {
-        removeErrorMessage(input);
-      }
-
-    });
-  }
-
-  if(filtrar.value === "AREAS" && modalidadInputs.length > 0)
-      {
-    areaInputs.forEach(input => {
-      if (input.value.trim() === "") {
-        insertErrorMessage(input, "Campo requerido");
-        valid = false;
-      } else {
-        removeErrorMessage(input);
-      }
-    });
- }
-    if (!valid) {
-      
-      return false;
-    }else{
-      return true;
-    }
-    
-    }
-
-    if(tipp.value === "PLANILLA_MENSUAL")
-    {
-      if (modalplan.value === "" || tipp.value === "" ){
-        swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Por favor, seleccione todas las opciones!',
-    });
-    return false;
-    }
-    }
-  
-  
-  }
-
-  return true;
-}
 
 
 function insertErrorMessage(input, message) {
@@ -742,23 +625,6 @@ function removeErrorMessage(input) {
       }
 
       }
-
-      function habilitarInput_desc(event) {
-     
-     
-     var modalidadInput = document.getElementById('filtrardesc' + event);
-
-     var inputHabilitados = document.getElementById('afps' + event);
-     if (modalidadInput.value === 'AFPS') {
-       
-       inputHabilitados.style.display = 'block';  // Habilitar el input
-     } else {
-       
-       inputHabilitados.style.display = 'none';   // Deshabilitar el input
-     }
-
-     }
-     
       
   function planilla(mes,param1,param2){
     // Variables define el alto de la ventana para mostrar
@@ -776,32 +642,6 @@ function removeErrorMessage(input) {
     $url += param2 ? '&param2=' + param2 : '';
     // Posciones
     if (validateForm(mes))
-    {
-    window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
-   
-    setTimeout(function() {
-                    location.reload();
-                    }, 1000)
-  }
-  }
-
-  function desc_ley(mes,param1,param2)
-  {
-    var modalidad =$('#modalplandesc'+mes).val(); 
-    var tipoplanilla=$('#tippdesc'+mes).val(); 
-    var ancho = 1000;
-    var alto = 800;  
-   
-    // Calcular posocion x,y para centrar la ventana
-    var x = parseInt((window.screen.width/2) - (ancho / 2));
-    var y = parseInt((window.screen.height/2) - (alto / 2));
-    $url = 'facturas/generardesc_ley.php?m='+mes+ '';
-    $url += modalidad ? '&modalidad=' + modalidad : '';
-    $url += tipoplanilla ? '&tipoplanilla=' + tipoplanilla : '';
-    $url += param1 ? '&param1=' + param1 : '';
-    $url += param2 ? '&param2=' + param2 : '';
-    // Posciones
-    if (validatedescform(mes))
     {
     window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
    

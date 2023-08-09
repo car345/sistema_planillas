@@ -617,13 +617,13 @@
 
 function validatedescform(id_meses)
 {
-      const modalplan = document.getElementById("modalplandesc" + id_meses);
-      
+      const modalplanS = document.getElementById("modalplandesc " + id_meses);
+
       const tipp = document.getElementById("tippdesc" + id_meses);
       const filtrar = document.getElementById("filtrardesc" + id_meses);
       let valid = true;
 
-     if(modalplan.value === "PENSIONISTAS" || tipp.value === ""){
+     if(modalplanS.value === "PENSIONISTAS" || tipp.value === ""){
       swal({
                     title: "Falta seleccionar los campos ",
                    

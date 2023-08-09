@@ -617,13 +617,12 @@
 
 function validatedescform(id_meses)
 {
-      const modalplan = document.getElementById("modalplandesc" + id_meses);
-      
+      const modalplan = document.getElementById("modalplandesc " + id_meses);
       const tipp = document.getElementById("tippdesc" + id_meses);
       const filtrar = document.getElementById("filtrardesc" + id_meses);
       let valid = true;
 
-     if(modalplan.value === "PENSIONISTAS" || tipp.value === ""){
+     if(modalplan.value === "" || tipp.value === ""){
       swal({
                     title: "Falta seleccionar los campos ",
                    
@@ -801,7 +800,7 @@ function removeErrorMessage(input) {
     $url += param1 ? '&param1=' + param1 : '';
     $url += param2 ? '&param2=' + param2 : '';
     // Posciones
-    if (validatedescform(mes))
+    if (validateFormdesc(mes))
     {
     window.open($url,"facturas","left="+x+",top="+y+",height="+alto+",width="+ancho+",scrollbar=si,location=no,resizable=si,menubar=no");
    
