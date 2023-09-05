@@ -1,5 +1,0 @@
-<?php 
- 
- include '../../../../../conecta.php';
- 
-?>

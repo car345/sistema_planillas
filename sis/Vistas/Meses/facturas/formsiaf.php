@@ -29,10 +29,15 @@
 
 <div id="page_pdf">
 	<table>
-	<tr><th    colspan="80">  UNIVERSIDAD NACIONAL <span>   "HERMILIO VALDIZAN" - HUÀNUCO</span>  </th> </tr>
-    <tr><th   class="center"   colspan="80">  FORMULARIO DE  <span> ABONO BANCOS  </span>  </th> </tr>
+	<tr>
+  <th colspan="5"></th>  
+  <th    colspan="100">  UNIVERSIDAD NACIONAL <span>   "HERMILIO VALDIZAN" - HUÀNUCO</span>  </th> </tr>
+    <tr>
+    <th colspan="10"></th>  
+      <th   class="center"   colspan="80">  FORMULARIO DE  <span> ABONO BANCOS  </span>  </th> </tr>
 
 		<tr> 
+    <th colspan="9"></th>  
         <td colspan="10"></td>    
         <td  class="center" colspan="60"  >Correspondiente al mes :
 			<?php
@@ -70,7 +75,7 @@ echo $monthName.' '.$mesac['anio'];
             <?php 
             $ars=array();
            $ar=array();
-            $siaf="SELECT DISTINCT CODIGO FROM partidas where CODIGO IN ('221111','221121') ";
+            $siaf="SELECT DISTINCT CODIGO FROM partidas where CODIGO IN ('221111') ";
                   $conx=$conn ->query($siaf);
                   while($result=$conx->fetch_assoc())
                 {
@@ -88,7 +93,7 @@ echo $monthName.' '.$mesac['anio'];
 			<tbody>
                 <tr></tr>
                 <tr></tr>
-     <td >PARTIDAS</td>
+     <td  style="font-size:13px; font-weight: bold;">PARTIDAS</td>
      <?php
       foreach($ars as $ps) 
         {    
@@ -97,28 +102,120 @@ echo $monthName.' '.$mesac['anio'];
             
         
         ?>
-      
-        <td colspan="10"> <?php echo $ps['CODIGO']; ?></td>
-      
+      <td></td>
+      <td colspan="10"></td>
+        <td colspan="10" style="font-size:13px; font-weight: bold;" > <?php echo $ps['CODIGO']; ?></td>
+        <td colspan="10"></td>
         <?php 
         }
      ?>
-       <td colspan="10">TOTAL</td>
+       <td colspan="10" style="font-size:13px; font-weight: bold;">TOTAL</td>
+     
      <?php
       foreach($ar as $p) 
         {    
             
-     
+          $finaltotali="SELECT sum(IMPORTE) as finalimporte FROM reportxplanilla r inner join datperso d on r.REGPERSO=d.id_datperso where REGMES='$mes' and r.PROPOR='0'  and DESCT not in('cbonoesp','homog.doc')";
+          $sqlfinaly=$conn->query($finaltotali);
+          $sqlfinalfetch=$sqlfinaly->fetch_assoc();
+   
+          $finaltotali1="SELECT sum(IMPORTE) as finalimporte1 FROM reportxplanilla r inner join datperso d on r.REGPERSO=d.id_datperso where REGMES='$mes' and r.PROPOR='2'  and DESCT not in('cbonoesp','homog.doc')";
+          $sqlfinaly1=$conn->query($finaltotali1);
+          $sqlfinalfetch1=$sqlfinaly1->fetch_assoc();
+          
+          $finaltotali11="SELECT SUM(r.IMPORTE) AS finalimporte1
+          FROM reportxplanilla r
+          INNER JOIN datperso d ON r.REGPERSO = d.id_datperso
+          WHERE r.REGMES = '$mes' 
+            AND r.PROPOR = '2'
+            AND r.DESCT LIKE '%AGUINALDO%'";
+          $sqlfinaly11=$conn->query($finaltotali11);
+          $sqlfinalfetch11=$sqlfinaly11->fetch_assoc();
             
         
         ?>
+
+        <tr><tr></tr></tr>
         <tr>
-        <td> <?php echo $p['CODIGO']; ?></td>
+        <td style="font-size:13px; "> <?php echo $p['CODIGO']; ?></td>
+        <td  colspan="11"></td>
+        <td style="font-size:13px;">
+        <?php echo round($sqlfinalfetch['finalimporte']-$sqlfinalfetch1['finalimporte1'],2);?></td>
+        <td  colspan="11"></td>
+        <td  colspan="08"></td>
+        <td style="font-size:13px;"><?php echo round($sqlfinalfetch['finalimporte']-$sqlfinalfetch1['finalimporte1'],2);?></td>
         </tr>
         <?php 
         }
      ?>
-<td>TOTALES</td>
+
+<tr></tr>
+                <tr></tr>
+                <?php 
+            $ars=array();
+           $ar=array();
+            $siaf="SELECT DISTINCT CODIGO FROM partidas where CODIGO IN ('221121') ";
+                  $conx=$conn ->query($siaf);
+                  while($result=$conx->fetch_assoc())
+                {
+                    $ar[]=$result;
+                }
+               
+                $siafS="SELECT DISTINCT CODIGO,DESCT FROM divisio where DESCT IN ('SIAF') ";
+                $conxS=$conn ->query($siafS);
+                while($results=$conxS->fetch_assoc())
+              {
+                  $ars[]=$results;
+              }
+             
+            ?>
+    
+     
+     <?php
+      foreach($ar as $p) 
+        {    
+            
+          $finaltotali="SELECT sum(IMPORTE) as finalimporte FROM reportxplanilla r inner join datperso d on r.REGPERSO=d.id_datperso where REGMES='$mes' and r.PROPOR='0'  and DESCT not in('cbonoesp','homog.doc')";
+          $sqlfinaly=$conn->query($finaltotali);
+          $sqlfinalfetch=$sqlfinaly->fetch_assoc();
+   
+          $finaltotali1="SELECT sum(IMPORTE) as finalimporte1 FROM reportxplanilla r inner join datperso d on r.REGPERSO=d.id_datperso where REGMES='$mes' and r.PROPOR='2'  and DESCT not in('cbonoesp','homog.doc')";
+          $sqlfinaly1=$conn->query($finaltotali1);
+          $sqlfinalfetch1=$sqlfinaly1->fetch_assoc();
+          
+          $finaltotali11="SELECT SUM(r.IMPORTE) AS finalimporte1
+          FROM reportxplanilla r
+          INNER JOIN datperso d ON r.REGPERSO = d.id_datperso
+          WHERE r.REGMES = '$mes' 
+            AND r.PROPOR = '2'
+            AND r.DESCT LIKE '%AGUINALDO%'";
+          $sqlfinaly11=$conn->query($finaltotali11);
+          $sqlfinalfetch11=$sqlfinaly11->fetch_assoc();
+            
+        
+        ?>
+
+        <tr><tr></tr></tr>
+        <tr>
+        <td style="font-size:13px; "> <?php echo $p['CODIGO']; ?></td>
+        <td  colspan="11"></td>
+        <td style="font-size:13px;">
+        <?php echo number_format(round($sqlfinalfetch11['finalimporte1'],2),2);?>
+        <td  colspan="11"></td>
+        <td  colspan="08"></td>
+        <td style="font-size:13px;"><?php echo number_format(round($sqlfinalfetch11['finalimporte1'],2),2);?></td>
+        </tr>
+        <?php 
+        }
+     ?>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+          <td style="font-size:13px;">TOTALES</td>
+          <td  colspan="11"></td>
+          <td style="font-size:13px;"> <?php echo round(($sqlfinalfetch['finalimporte']-$sqlfinalfetch1['finalimporte1'])-$sqlfinalfetch11['finalimporte1'] ,2);?></td>
+          <td  colspan="19"></td>
+          <td style="font-size:13px;"> <?php echo round(($sqlfinalfetch['finalimporte']-$sqlfinalfetch1['finalimporte1'])-$sqlfinalfetch11['finalimporte1'] ,2);?></td>
 </tbody>
 	</table>
 </div>

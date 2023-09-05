@@ -37,8 +37,8 @@
 					<td style="font-size:10px; font-size:normal;"colspan="1"   >Num</td>
 			
 					<td style="font-size:10px; "  >Apellidos</td>
-					<td style="font-size:10px;  "colspan="3" >Nombre.</td>
-					<td style="font-size:10px; "  colspan="20">CÓDIGO AFP.</td>
+					<td style="font-size:10px;  "colspan="10" >Nombre.</td>
+
 					<td style="font-size:10px; "  colspan="22">CÓDIGO IPSS.</td>
 					<td style="font-size:10px; "  colspan="13">DESC. LEY</td>
 				</tr>
@@ -70,11 +70,10 @@ $i=1;
 				
 					<td style="font-size:10px" ><?php echo $i; $i++;?></td>
 					<td style="font-size:10px"  ><?php echo $descuento['APELLIDOS']; ?></td>
-					<td style="font-size:10px"colspan="" ><?php echo $descuento['NOMBRE']; ?></td>
+					<td style="font-size:10px"colspan="10" ><?php echo $descuento['NOMBRE']; ?></td>
 				
-	
-					<td style="font-size:10px"colspan="20"><?php echo $descuento['CODIGO_AFP']; ?></td>
-					<td style="font-size:10px" colspan="27"><?php echo $descuento['CODIGO_IPS']; ?></td>
+
+					<td style="font-size:10px" colspan="24"><?php echo $descuento['CODIGO_IPS']; ?></td>
 					<td style="font-size:10px"colspan="2"><?php echo number_format($importe,2); ?></td>
 			
 	</tr>
@@ -85,7 +84,7 @@ $i=1;
 			<tr></tr>
 			<tr > <td colspan="55" > <hr></td></tr>
 			<tr>
-				<td colspan="40" ></td>
+				<td colspan="27" ></td>
 				<td colspan="15" style="font-size:10px"> Totales: &nbsp;&nbsp; <?php echo number_format($total,2); ?></td>
 			</tr>
 			</tbody>

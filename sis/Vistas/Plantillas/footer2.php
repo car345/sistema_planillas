@@ -15,5 +15,6 @@
   <script src="../../Resources/assets/vendor/php-email-form/validate.js"></script>
   <script src="../../Resources/assets/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    </body>
+  
+</body>
 </html>

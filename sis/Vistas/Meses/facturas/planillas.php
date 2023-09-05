@@ -143,7 +143,7 @@ echo $monthName.' '.$mesac['anio'];
 
 		</div>
 		<td style="font-size:11px; "   >T.renumera </td>
-<td style="font-size:11px; "  >T. descuento</td>
+	<td style="font-size:11px; "  >T. descuento</td>
 	</tr>
 
 	<tr ><td style="font-size:11px; " colspan=""  >CATEGORÍA</td>
@@ -387,7 +387,9 @@ echo $monthName.' '.$mesac['anio'];
 			 $finaltotali1="SELECT sum(IMPORTE) as finalimporte1 FROM reportxplanilla r inner join datperso d on r.REGPERSO=d.id_datperso where REGMES='$meses' and r.PROPOR='2' AND id_modali='$modal' and DESCT not in('cbonoesp','homog.doc')";
 			 $sqlfinaly1=$conn->query($finaltotali1);
 			 $sqlfinalfetch1=$sqlfinaly1->fetch_assoc();
+			 
 			?>
+			
 			<td colspan="2"> Total de Planilla : <?php echo round($sqlfinalfetch['finalimporte']-$sqlfinalfetch1['finalimporte1'],2);?></td>
 			<td colspan=""><hr></td>
 		

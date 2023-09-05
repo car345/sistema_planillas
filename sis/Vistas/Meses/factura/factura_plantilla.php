@@ -275,7 +275,7 @@ th {
 					$mysdesc=$conn->query($datperso);
 					$valor=mysqli_fetch_assoc($mysdesc);
 					$vars=$valor['id_datperso'];
-					$descuento="SELECT*FROM reportxplanilla where REGMES='$mes' and REGPERSO='$vars' and PROPOR='2'" ;
+					$descuento="SELECT*FROM reportxplanilla rep where rep.REGMES='$mes' and rep.REGPERSO='$vars' and rep.PROPOR='2'" ;
 					$descmysql=mysqli_query($conn,$descuento);
 					$descuento1="SELECT*FROM reportxplanilla where REGMES='$mes' and REGPERSO='$vars' and PROPOR='2'" ;
 					$descmysql1=mysqli_query($conn,$descuento1);
@@ -365,7 +365,13 @@ th {
 				<td  class="textleft" style="font-size:11px;border-bottom:none;"><?php
 					if($row1['DESCT']=='cbonoesp')
 					{
-					} else{echo $row1['CODIGO']; }	?></td>
+					} else if($row1['CODIGOSIAF'] === '')
+					{
+						echo $row1['CODIGO']; }
+					else{
+						echo $row1['CODIGOSIAF']; 	
+					}	
+					?></td>
 					<td  style="font-size:11px;border-bottom:none;"><?php
 					if($row1['DESCT']=='cbonoesp')
 					{

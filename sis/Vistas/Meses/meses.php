@@ -1,6 +1,6 @@
 <?php 
 include '../../../conecta.php';
-include_once '../Plantillas/encabezado.php';
+include_once '../Plantillas/encabezadomeses.php';
 $directorioActual = getcwd();
 echo $directorioActual;
 ?>
@@ -76,7 +76,24 @@ ul.options-list li:first-child {
   align-items: center; /* Centrar verticalmente los elementos */
   margin-top: 4px;
 }
+.calendar-container {
+            display: inline-block;
+            width: 100%; /* Ajusta el ancho según tus necesidades */
+            margin: 10px;
+        }
+        .fc .fc-button {
+            font-size: 10px; /* Ajusta el tamaño de fuente de los botones */
+            padding: 2px 5px; /* Ajusta el espacio dentro de los botones */
+        }
+
+        #fc-dom-1{
+            font-size: 12px; /* Ajusta el tamaño de fuente del título del calendario */
+        }
+        #fc-dom-86{
+            font-size: 12px; /* Ajusta el tamaño de fuente del título del calendario */
+        }
 </style>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -89,8 +106,14 @@ ul.options-list li:first-child {
       </nav>
     </div><!-- Fin Titulo -->
     <section class="section dashboard">
-      
+
+
+   
     <div class="card">
+    <div class="container">
+
+
+</div>
             <div class="card-body">
             <h4 class="fw-bold text-primary mt-3 ">PLANILLA DE MES</h4>
             <hr>
@@ -381,12 +404,20 @@ if($data['id_meses']=='9999')
       </div>   
       
       <script src="./meses.js"></script>
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src = "https://code.jquery.com/jquery-latest.min.js " type="text/javascript"></script>
-<script src="../buscador/buscador.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script type="text/javascript" src="lib/datapicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="lib/datapicker.css" >
+	
+	
+      <script src="../buscador/buscador.js"></script>
 
 <?php
-include_once '../Plantillas/footer.php';
+include_once '../Plantillas/footermeses.php';
 ?>
 <script>
 
@@ -398,7 +429,8 @@ for (var i = 0; i < openModalLinks.length; i++) {
         event.preventDefault(); // Evitar la acción por defecto del enlace o botón
 
         var id = this.getAttribute('data-id');
-
+      
+    
 
         var modalInput = document.getElementById('id_usuario' + id);
        

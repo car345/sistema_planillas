@@ -11,8 +11,8 @@
 
 	$query = mysqli_query($conn,"SELECT f.NUMERO_DOC,f.NOMBRE,f.APELLIDOS,f.CARGO,f.id_categori,f.CTA_CTE,f.id_afps,f.id_modali,f.id_areas,p.REGISTRO, a.DESC as DESCA, af.DESC as DESCAF, m.DESC as DESCM, c.DESC as DESCC FROM persxmes p inner join datperso f on p.REGISTRO=f.id_datperso inner join areas a on f.id_areas=a.id_areas inner join afps af on af.id_afps=f.id_afps inner join modali m on m.id_modali=f.id_modali inner join categori c on c.id_categori=f.id_categori where f.NUMERO_DOC='$cliente' and p.REGMES='$mes'");
 	
-	$query1 =mysqli_query($conn,"SELECT f.NUMERO_DOC,f.NOMBRE,f.APELLIDOS,f.CARGO,f.id_categori,f.CTA_CTE,f.id_afps,p.REGPERSO,p.IMPORTE,p.DESCT,p.CODIGO FROM reportxplanilla p inner join datperso f on p.REGPERSO=f.id_datperso  
-	where p.REGMES='$mes' and f.NUMERO_DOC='$cliente' and p.PROPOR='0'");	
+	$query1 =mysqli_query($conn,"SELECT  DISTINCT f.NUMERO_DOC,f.NOMBRE,f.APELLIDOS,f.CARGO,f.id_categori,f.CTA_CTE,f.id_afps,p.REGPERSO,p.IMPORTE,p.DESCT,p.CODIGO,re.CODIGOSIAF FROM reportxplanilla p inner join datperso f on p.REGPERSO=f.id_datperso  
+	inner join renumeraciones re on p.CODIGO=re.CODIGO where p.REGMES='$mes' and f.NUMERO_DOC='$cliente' and p.PROPOR='0'");	
 	
 	
 			
