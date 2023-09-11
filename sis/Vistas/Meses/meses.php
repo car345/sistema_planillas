@@ -244,11 +244,11 @@ if($data['id_meses']=='9999')
                  <a class="btn btn-success"  href='#'   > <i class="bi bi-file-earmark-arrow-up-fill"></i></a>
                  <?php }else{
                   ?> 
-                  <a class="btn btn-success"  href='./archivo_txt.php?m=<?php echo $data["id_meses"];?>' > <i class="bi bi-file-earmark-arrow-up-fill"></i></a>
+                  <a class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#modaltxt<?php echo $data["id_meses"];?>" > <i class="bi bi-file-earmark-arrow-up-fill"></i></a>
                   <?php } ?>
                 </td>
 
-                
+                <!-- href='./archivo_txt.php?m=<?php echo $data["id_meses"];?>' -->
                 <td class="bg-light text-center">
                  <?php if($data['ESTADO']==0){
                    ?>
@@ -275,6 +275,7 @@ if($data['id_meses']=='9999')
   include './desbloquear/desbloquear.php';
   include './Modals/modaleditar.php';
   include './Modals/exportarmes.php';
+  include './modaltxt/modaltxt.php';
 }}
   }else{
 ?> 
@@ -289,34 +290,34 @@ if($data['id_meses']=='9999')
          <td>
      
            <!-- Paginador-->
-        <div aria-label="Page navigation example"  >
-            <ul class="pagination" >
-                <?php
-                    if($pagina != 1)
-                    {
-                    ?>
-                    <li class="page-item"><a  class="page-link" href="?pagina=<?php echo 1; ?>">Anterior</a></li>
-                    <li class="page-item"><a  class="page-link" href="?pagina=<?php echo $pagina-1;?>">Siguiente</a></li>
-                    <?php
-                }
-                for($i=1; $i<= $total_paginas; $i++)
-                {
-                if($i==$pagina)
-                {
-                    echo '<li   class="page-item active" aria-current="page">  <a class="page-link">'.$i. '</a></li>';
-                }
-                else{
-                    echo '<li class="page-item"> <a class="page-link"   href="?pagina='.$i.'">'.$i.'</a></li>';
-                }
-                }
-                if($pagina != $total_paginas)
+    <div aria-label="Page navigation example"  >
+        <ul class="pagination" >
+            <?php
+                if($pagina != 1)
                 {
                 ?>
-                    <li  class="page-item"><a  class="page-link" href="?pagina=<?php echo $pagina +1;?>">Siguente</a></li>
-                    <li  class="page-item"><a  class="page-link"  href="?pagina=<?php echo $total_paginas; ?>">Final</a></li>
-                    <?php } ?>
-            </ul>
-        </div>
+                <li class="page-item"><a  class="page-link" href="?pagina=<?php echo 1; ?>">Anterior</a></li>
+                <li class="page-item"><a  class="page-link" href="?pagina=<?php echo $pagina-1;?>">Siguiente</a></li>
+                <?php
+            }
+            for($i=1; $i<= $total_paginas; $i++)
+            {
+            if($i==$pagina)
+            {
+                echo '<li   class="page-item active" aria-current="page">  <a class="page-link">'.$i. '</a></li>';
+            }
+            else{
+                echo '<li class="page-item"> <a class="page-link"   href="?pagina='.$i.'">'.$i.'</a></li>';
+            }
+            }
+            if($pagina != $total_paginas)
+            {
+            ?>
+                <li  class="page-item"><a  class="page-link" href="?pagina=<?php echo $pagina +1;?>">Siguente</a></li>
+                <li  class="page-item"><a  class="page-link"  href="?pagina=<?php echo $total_paginas; ?>">Final</a></li>
+                <?php } ?>
+        </ul>
+    </div>
         <div id="loading" class="spinner">
       <div class="spinner-inner"></div>    
     </div>
